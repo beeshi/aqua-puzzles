@@ -58,10 +58,11 @@ stock_messages = {
     "Correct": "Your answer of {answer} for puzzle {puzzle_number} is Correct!{storyline}",
     "Incorrect": "Sorry, your answer {answer} for puzzle {puzzle_number} was incorrect. Please try again.",
     "Already Answered": "You've already completed puzzle {puzzle_number}, go find another one!",
-    "Final Puzzle": "Your answer of {answer} is Correct!{storyline} You have solved all 8 puzzles! Come to the front desk to receive the meta puzzle! To submit the meta, text 'meta' and then the answer",
+    "Final Puzzle": "Your answer of {answer} is Correct!{storyline} You have solved 7 out of 8 puzzles! Come to the front desk to receive the meta puzzle! To submit the meta, text 'meta' and then the answer",
     "Meta Correct": "Congratulations {team_name}, {answer} was correct! Go see the Diving Supervisors at the front desk!",
     "Meta Answered": "You've completed the puzzle hunt! Congratulations :)",
-    "Meta Incorrect": "Sorry, {answer} was wrong. Please try again."
+    "Meta Incorrect": "Sorry, {answer} was wrong. Please try again.",
+    "Hint Used": "Hint used! Go see the Diving Supervisors at the front desk."
 }
 
 special_messages = {
@@ -159,7 +160,7 @@ def show_teams():
                 ret+= "FINISHED(" + str(team['SolveTimes']['META']-team[u'StartTime']) +") "
             else:
                 ret+= "ELAPSED(" + str(datetime.datetime.utcnow()-team[u'StartTime']) +") "
-            ret += '"' + team[u'TempName'] + '",' + ",".join(team[u'Correct']) +" "+ team[u'StartTime'].strftime("%H:%M:%S") + "\r\n"
+            ret += '"' + team[u'TempName'] + '",' + ",".join(team[u'Correct']) +" "+ team[u'StartTime'].strftime("%H:%M:%S") +" " + team[u'HintsUsed'] + "\r\n"
     return Response(ret, mimetype='text/plain')
 
 @app.route("/", methods=['GET', 'POST'])
@@ -187,6 +188,7 @@ def hello_monkey():
         if tokens[0].upper() == 'YES':
             teams.update({"Number":from_number},{"$set":{"Name":team[u'TempName']}})
             teams.update({"Number":from_number},{"$set":{"StartTime":datetime.datetime.utcnow()}})
+            teams.update({"Number":from_number},{"$set":{"HintsUsed":0}})
             message = stock_messages["Welcome"].format(team_name=team[u'TempName'])
         elif len(command) < 31:
             if teams.find_one({"$or":[{"Name":command}, {"TempName":command}]}) == None:
@@ -219,6 +221,9 @@ def hello_monkey():
         root = tokens[0]
         if root.upper() == "?":
             message = stock_messages["Help"]
+        elif root.upper() == "HINT":
+            teams.update({"Number":from_number},{"$inc":{"HintsUsed":1}})
+            message = stock_messages["Hint Used"]
 
     response = MessagingResponse()
     response.message(message)
