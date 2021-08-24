@@ -55,7 +55,7 @@ stock_messages = {
     "Confirm Name": "Welcome to the Aquarium Puzzlehunt! Text 'yes' to accept the name '{team_name_temp}' or text to create a new one",
     "Parse Error": "I'm sorry, we didn't understand '{text}'. Please text answers in the format [PUZZLE NO.] [SOLUTION], like '1 balloon'",
     "Problem Not Exists": "We don't have a puzzle {puzzle_number}...",
-    "Correct": "Your answer of {answer} is Correct!{storyline}",
+    "Correct": "Your answer of {answer} for puzzle {puzzle_number} is Correct!{storyline}",
     "Incorrect": "Sorry, your answer {answer} for puzzle {puzzle_number} was incorrect. Please try again.",
     "Already Answered": "You've already completed puzzle {puzzle_number}, go find another one!",
     "Final Puzzle": "Your answer of {answer} is Correct!{storyline} You have solved all 8 puzzles! Come to the front desk to receive the meta puzzle! To submit the meta, text 'meta' and then the answer",
@@ -65,17 +65,18 @@ stock_messages = {
 }
 
 special_messages = {
+    "1": {
+        "NAMEOF": "Keep going! What shapes do those letters make?",
+        "NAMEOFAUTHOR": "You're close! Who is the author of the puzzle?",
+        "AUTHOR": "Keep going! Who is the author of the puzzle?",
+        "WAYNE": "One more step! Try applying the puzzle mechanic again."
+    },
     "2": {
-        "NAMEOF": "HINT TEXT",
-        "NAMEOFAUTHOR": "HINT TEXT",
-        "WAYNE": "HINT TEXT"
+        "ONEISANGRY": "Almost! The other is...?"
     },
     "3": {
-        "ONEISANGRY": "HINT TEXT"
-    },
-    "4": {
-        "ACCUMULATING": "HINT TEXT",
-        "CHASINGAFTER": "HINT TEXT"
+        "ACCUMULATING": "Keep going!",
+        "CHASINGAFTER": "Keep going!"
     }
 }
 
