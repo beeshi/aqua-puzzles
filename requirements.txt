@@ -1,3 +1,4 @@
 flask
 pymongo
-twilio==5
+dnspython
+twilio==6
