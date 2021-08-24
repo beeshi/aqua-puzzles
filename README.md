@@ -5,6 +5,10 @@ Texting answer submission system for MIT Aquarium Puzzlehunt.
 
 # Instructions
 
+Fork this repository to your github account.
+
+Make a copy of the latest run file, rename it to the current year, and update all puzzle answers and hint text.
+
 Go to twilio.com and make an account
 
 Click "Buy a number" and purchase a number with SMS capabilities (I used 234-AQUA-PUZ)
