@@ -1,8 +1,9 @@
 from flask import Flask, request, redirect, Response
 from pymongo import MongoClient
-import twilio.twiml
+from twilio.twiml.messaging_response import Message, MessagingResponse
 import re
 import datetime
+import ssl
 
 import os
 
@@ -37,8 +38,8 @@ storyline = {
     "8": "",
 }
 
-client = MongoClient('mongodb+srv://aquaadmin:aqua@cluster0.9lq84.mongodb.net/aqua?retryWrites=true&w=majority')
-#print(client.list_database_names())
+client = MongoClient("mongodb+srv://aquaadmin:aqua@cluster0.9lq84.mongodb.net/aqua?retryWrites=true&w=majority", ssl_cert_reqs=ssl.CERT_NONE)
+print("Available dbs (need aqua): ", client.list_database_names())
 
 db = client.aqua #make sure to set up a db called aqua beforehand
 teams = db.teams
@@ -218,10 +219,10 @@ def hello_monkey():
         if root.upper() == "?":
             message = stock_messages["Help"]
 
-    resp = twilio.twiml.Response()
-    resp.sms(message)
+    response = MessagingResponse()
+    response.message(message)
 
-    return str(resp)
+    return str(response)
 
 if __name__ == "__main__":
     app.run()
