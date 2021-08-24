@@ -59,8 +59,8 @@ stock_messages = {
     "Incorrect": "Sorry, your answer {answer} for puzzle {puzzle_number} was incorrect. Please try again.",
     "Already Answered": "You've already completed puzzle {puzzle_number}, go find another one!",
     "Final Puzzle": "Your answer of {answer} is Correct!{storyline} You have solved all 8 puzzles! Come to the front desk to receive the meta puzzle! To submit the meta, text 'meta' and then the answer",
-    "Meta Correct": "Congratulations {team_name}, {answer} was correct! Go see Mission Control at the front desk!",
-    "Meta Answered": "(TODO: change this) Yeah, we're upset about Pluto too. Since we're in an aquarium, perhaps you should consider this: https://www.quora.com/What-would-happen-if-the-Earth-was-hit-by-a-fish-the-size-of-Pluto",
+    "Meta Correct": "Congratulations {team_name}, {answer} was correct! Go see the Diving Supervisors at the front desk!",
+    "Meta Answered": "You've completed the puzzle hunt! Congratulations :)",
     "Meta Incorrect": "Sorry, {answer} was wrong. Please try again."
 }
 
