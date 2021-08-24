@@ -37,7 +37,7 @@ storyline = {
     "8": "",
 }
 
-client = MongoClient()
+client = MongoClient('mongodb+srv://aquaadmin:aqua@cluster0.9lq84.mongodb.net/aqua?retryWrites=true&w=majority')
 #print(client.list_database_names())
 
 db = client.aqua #make sure to set up a db called aqua beforehand
