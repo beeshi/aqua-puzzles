@@ -58,7 +58,7 @@ stock_messages = {
     "Correct": "Your answer of {answer} for puzzle {puzzle_number} is Correct!{storyline}",
     "Incorrect": "Sorry, your answer {answer} for puzzle {puzzle_number} was incorrect. Please try again.",
     "Already Answered": "You've already completed puzzle {puzzle_number}, go find another one!",
-    "Final Puzzle": "Your answer of {answer} is Correct!{storyline} You have solved all 8 puzzles! Come to the front desk to receive the meta puzzle! To submit the meta, text 'meta' and then the answer",
+    "Final Puzzle": "Your answer of {answer} is Correct!{storyline} You have solved 7/8 puzzles! Come to the front desk to receive the meta puzzle! To submit the meta, text 'meta' and then the answer",
     "Meta Correct": "Congratulations {team_name}, {answer} was correct! Go see the Diving Supervisors at the front desk!",
     "Meta Answered": "You've completed the puzzle hunt! Congratulations :)",
     "Meta Incorrect": "Sorry, {answer} was wrong. Please try again."
@@ -73,10 +73,6 @@ special_messages = {
     },
     "2": {
         "ONEISANGRY": "Almost! The other is...?"
-    },
-    "3": {
-        "ACCUMULATING": "Keep going!",
-        "CHASINGAFTER": "Keep going!"
     }
 }
 
@@ -101,7 +97,7 @@ def parse_puzzle_answers(team,from_number,root,leaf):
             teams.update({"Number":from_number},{"$push":{"Correct":root},"$set":{"SolveTimes."+root:datetime.datetime.utcnow()}})
             subans.update({"_Puzzle":root},{"$inc":{leaf:1},"$addToSet":{"_Answers":leaf}},True)
 
-            if len(team[u'Correct']) >= 7:
+            if len(team[u'Correct']) >= 6:
                 return stock_messages["Final Puzzle"].format(puzzle_number=root, answer=leaf,  storyline=storyline[root], team_name=team[u'Name'])
             else:
                 return stock_messages["Correct"].format(puzzle_number=root, answer=leaf, storyline=storyline[root])
