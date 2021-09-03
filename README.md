@@ -41,7 +41,7 @@ No need to add custon domain, although you can if you wish.
 
 Your domain is available in Service overview under Default domain.
 
-Change the Twilio webhook for messaging to be https://<your_domain>.awsapprunner.com/ and set to HTTP GET
+Change the Twilio webhook for messaging to be https://<your_domain>.awsapprunner.com/ and set to HTTP POST
 
 To test sending a message, you can either text the number from your phone, or go to 
 https://<your_domain>.awsapprunner.com/?From=testnumber&Body=testmessage
