@@ -156,7 +156,7 @@ def show_teams():
                 ret+= "FINISHED(" + str(team['SolveTimes']['META']-team[u'StartTime']) +") "
             else:
                 ret+= "ELAPSED(" + str(datetime.datetime.utcnow()-team[u'StartTime']) +") "
-            ret += '"' + team[u'TempName'] + '",' + ",".join(team[u'Correct']) +" "+ team[u'StartTime'].strftime("%H:%M:%S") +" " + team[u'HintsUsed'] + "\r\n"
+            ret += '"' + team[u'TempName'] + '",' + ",".join(team[u'Correct']) +" "+ team[u'StartTime'].strftime("%H:%M:%S") +" " + str(team[u'HintsUsed']) + "\r\n"
     return Response(ret, mimetype='text/plain')
 
 @app.route("/", methods=['GET', 'POST'])
